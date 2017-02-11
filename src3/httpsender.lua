@@ -1,9 +1,6 @@
 -- sleep us = 20-2 sec
 	local COUNTSLEEP = 18000
 
-
-
-
 function sendData()
 	local r=tmr.now()
 	local AOvar = adc.read(0)
@@ -21,8 +18,8 @@ function sendData()
 	
 	conn:on("receive", function(conn, payload) print(payload) end)
 -- api.thingspeak.com
-	conn:connect(80,'192.168.43.43')
-	conn:send("GET /update?key=apikey&field1="..AOvar.."&field2="..r.." HTTP/1.1\r\n Host: 192.168.43.43:80\r\n")
+	conn:connect(8080,'192.168.43.43')
+	conn:send("GET /update?key=apikey&field1="..AOvar.."&field2="..r.." HTTP/1.1\r\n Host: 192.168.43.43:8080\r\n")
 	conn:send("Host: 192.168.43.43\r\n")
 	conn:send("Accept: */*\r\n")
 	conn:send("User-Agent: Mozilla/4.0 (compatible; esp8266 Lua; Windows NT 5.1)\r\n")
